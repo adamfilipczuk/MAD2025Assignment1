@@ -12,6 +12,10 @@ export default function Home({ navigation }) {
     { itemId: "3", title: "Buy eggs" },
   ];
 
+  const imageMap = {
+    add: require("../../assets/add.png"),
+  };
+
   const screenWidth = Dimensions.get("window").width;
   const screenHeight = Dimensions.get("window").height;
 
@@ -20,6 +24,7 @@ export default function Home({ navigation }) {
       <StatusBar style="dark" backgroundColor={colors.background} />
       <View style={styles.container}>
         <Text style={styles.titleText}>My Todo List</Text>
+        <View style={styles.line} />
 
         {/* FlatList to render each Todo Item */}
         <FlatList
@@ -33,7 +38,7 @@ export default function Home({ navigation }) {
           )}
           keyExtractor={(item) => item.itemId}
         />
-
+        <View style={styles.line} />
         {/* Button Container */}
         <View style={styles.buttonContainer}>
           <AddButton
@@ -41,7 +46,8 @@ export default function Home({ navigation }) {
             height={screenHeight * 0.05}
             marginBottom={screenHeight * 0.04}
             marginTop={screenHeight * 0.01}
-            onPress={() => navigation.navigate("Add")} 
+            onPress={() => navigation.navigate("Add")}
+            image={require("../../assets/add.png")}
             title="Add Todo"
           />
         </View>
@@ -56,14 +62,21 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     backgroundColor: colors.background,
-    paddingTop: 50,
+    paddingTop: 10,
   },
   titleText: {
     fontSize: 24,
     fontWeight: "bold",
     color: colors.textPrimary,
   },
+    line: {
+      height: 1, // Thin line
+      width: "90%", // Full width
+      backgroundColor: "black", // Light gray color
+      marginVertical: 10, // Space above & below
+    },
   buttonContainer: {
-    marginTop: 20,  // Add margin for better spacing
+    marginTop: 5,  // Add margin for better spacing
+    marginBottom: 10,
   },
 });
